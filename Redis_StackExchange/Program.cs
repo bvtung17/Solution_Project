@@ -69,4 +69,33 @@ class Program
             Console.WriteLine($"Error: {ex.Message}");
         }
     }
+
+    static void PubSubMessage(string key)
+    {
+        ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("localhost");
+        IDatabase db = redis.GetDatabase();
+
+        ISubscriber sub = redis.GetSubscriber();
+
+        //sub.Subscribe("messages", (channel, message) =>
+        //{
+        //    Console.WriteLine((string)message);
+        //});
+
+        // Synchronous handler
+        sub.Subscribe("messages").OnMessage(channelMessage =>
+        {
+            Console.WriteLine((string)channelMessage.Message);
+        });
+
+        // Asynchronous handler
+        sub.Subscribe("messages", (channelMessage, message) =>
+        {
+            Console.WriteLine((string)message);
+        });
+
+        sub.Publish("messages", "hello");
+
+        Console.ReadLine();
+    }
 }
