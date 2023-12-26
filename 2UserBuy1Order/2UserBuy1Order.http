@@ -1,6 +1,0 @@
-@_2UserBuy1Order_HostAddress = http://localhost:5030
-
-GET {{_2UserBuy1Order_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
