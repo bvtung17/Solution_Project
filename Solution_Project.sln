@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LockSolution", "LockSolutio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redis_StackExchange", "Redis_StackExchange\Redis_StackExchange.csproj", "{0349D178-C095-4566-80C5-DFC40E614B60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Job_BackgroundJob", "Job_BackgroundJob\Job_BackgroundJob.csproj", "{95B5C08B-A3CB-44B4-91E3-A006BEA6E156}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Job_BackgroundJob", "Job_BackgroundJob\Job_BackgroundJob.csproj", "{95B5C08B-A3CB-44B4-91E3-A006BEA6E156}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Job_Hangfire", "Job_Hangfire\Job_Hangfire.csproj", "{F55B18A9-0F11-459D-A33E-30236F8CB3EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Job_Hangfire", "Job_Hangfire\Job_Hangfire.csproj", "{F55B18A9-0F11-459D-A33E-30236F8CB3EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saga.SimpleEvent", "Saga.SimpleEvent\Saga.SimpleEvent.csproj", "{436872E4-6B12-43ED-BA1E-924E4392DF42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F55B18A9-0F11-459D-A33E-30236F8CB3EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F55B18A9-0F11-459D-A33E-30236F8CB3EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F55B18A9-0F11-459D-A33E-30236F8CB3EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{436872E4-6B12-43ED-BA1E-924E4392DF42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{436872E4-6B12-43ED-BA1E-924E4392DF42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{436872E4-6B12-43ED-BA1E-924E4392DF42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{436872E4-6B12-43ED-BA1E-924E4392DF42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

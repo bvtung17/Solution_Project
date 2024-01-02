@@ -8,7 +8,7 @@ class Program
         {
             Console.WriteLine("Nhap vao gia tri");
             var input = Console.ReadLine();
-            CheckLock(input);
+            CheckLock(key: input);
             if (string.IsNullOrEmpty(input))
                 break;
         }
@@ -70,6 +70,7 @@ class Program
         }
     }
 
+    [Obsolete("This method is deprecated, please use the NewMethod instead.")]
     static void PubSubMessage(string key)
     {
         ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("localhost");
