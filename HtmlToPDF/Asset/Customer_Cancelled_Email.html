@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Cancelled</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body style="font-family: 'Barlow', sans-serif; background-color: #fbfbfb">
+  <div style="display: block; margin: 0 auto; padding: 60px 0">
+    <div style="
+          width: 600px;
+          margin: 0 auto;
+          display: block;
+          border: 1px solid #e7eaef;
+          background-color: white;
+          padding: 48px 44px;
+          border-radius: 12px;
+          color: black;
+        ">
+      <div style="margin-bottom: 48px">
+        <img style="width: 110px; height: 56px; display: block; margin: 0 auto"
+          src="https://v1hubstorage.blob.core.windows.net/template-email/V1hub%20Logo%20email.jpg" alt />
+      </div>
+      <p style="font-size: 18px">
+        Dear @(Model.Member.FirstName + " " + Model.Member.LastName),
+      </p>
+      <p style="font-size: 18px">
+        Your order @("#OD0000" + Model.Id) has been successfully canceled. We
+        are processing @Model.TotalPrice @Model.Currency refund for order
+      </p>
+
+      <div style="margin: 36px 0; overflow-x: auto; max-width: 100%">
+        <table style="width: 100%; border-spacing: 0">
+          <thead>
+            <tr>
+              <th style="
+                    padding: 8px;
+                    border-top: 1px solid #e7eaef;
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                  ">
+                Name
+              </th>
+              <th style="
+                    padding: 8px;
+                    border-top: 1px solid #e7eaef;
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                  ">
+                Material
+              </th>
+              <th style="
+                    padding: 8px;
+                    border-top: 1px solid #e7eaef;
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                  ">
+                Color
+              </th>
+              <th style="
+                    padding: 8px;
+                    border-top: 1px solid #e7eaef;
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                  ">
+                Scale
+              </th>
+              <th style="
+                    padding: 8px;
+                    border-top: 1px solid #e7eaef;
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                  ">
+                Size
+              </th>
+
+              <th style="
+                    padding: 8px;
+                    border-top: 1px solid #e7eaef;
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                  ">
+                Quantity
+              </th>
+
+              <th style="border: 1px solid #e7eaef; padding: 8px">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach(var item in @Model.OrderDetails) {
+            <tr>
+              <td style="
+                    padding: 8px;
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                  ">
+                @item.ProductName
+              </td>
+              <td style="
+                    padding: 8px;
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                  ">
+                @item.MaterialName
+              </td>
+              <td style="
+                    padding: 8px;
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                  ">
+                @item.ColorName
+              </td>
+              <td style="
+                    padding: 8px;
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                  ">
+                @item.Scale
+              </td>
+              <td style="
+                    padding: 8px;
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                  ">
+                @item.SizeType
+                <br />unit: @(item.Length + "mm " + item.Width + "mm " +
+                item.Height + "mm")
+              </td>
+
+              <td style="
+                    padding: 8px;
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                  ">
+                @item.Quantity
+              </td>
+              <td style="
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                    border-right: 1px solid #e7eaef;
+                    padding: 8px;
+                  ">
+                @(item.UnitPrice + item.Currency)
+              </td>
+            </tr>
+            }
+            <tr>
+              <td colspan="6" style="
+                    text-align: center;
+                    padding: 8px;
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                  ">
+                Discount
+              </td>
+              <td style="
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                    border-right: 1px solid #e7eaef;
+                    padding: 8px;
+                  ">
+                @(Model.DiscountAmount + Model.Currency)
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" style="
+                    text-align: center;
+                    padding: 8px;
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                  ">
+                Shipping free
+              </td>
+              <td style="
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                    border-right: 1px solid #e7eaef;
+                    padding: 8px;
+                  ">
+                @(Model.ShippingFee + Model.Currency)
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" style="
+                    text-align: center;
+                    padding: 8px;
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                  ">
+                ToTal bill
+              </td>
+              <td style="
+                    border-bottom: 1px solid #e7eaef;
+                    border-left: 1px solid #e7eaef;
+                    border-right: 1px solid #e7eaef;
+                    padding: 8px;
+                  ">
+                @(Model.TotalPrice + Model.Currency)
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 18px">
+        We will apply the refund to the payment method(s):
+        @Model.PaymentMethod.Name
+      </p>
+      <p style="font-size: 18px">This process will take 7 working days.</p>
+      <p style="font-size: 18px">
+        It may take a few days for the funds to appear in your account.
+      </p>
+      <p style="font-size: 18px">
+        If you have any questions regarding this purchase order, please
+        contact V1Hub support team
+      </p>
+      <div style="margin-top: 32px">
+        <p style="margin: 0; font-size: 18px">Thanks & Regards,</p>
+        <p style="margin: 4px 0; font-weight: 500; font-size: 18px">
+          V1Hub Team
+        </p>
+        <a style="text-decoration: none; color: #0076e2; font-size: 18px" href="mailto::support@v1hub.com">
+          support@v1hub.com
+        </a>
+      </div>
+    </div>
+    <div style="display: block; margin: 32px auto 0; width: 600px">
+      <p style="
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            color: #222;
+          ">
+        Connect V1Hub
+      </p>
+      <div style="display: block; text-align: center">
+        <a style="text-decoration: none; padding: 0 4px" href="https://www.facebook.com/v1hub">
+          <img style="width: 48px; height: 48px; border-radius: 50%"
+            src="https://v1hubstorage.blob.core.windows.net/template-email/email_fb.jpg" alt="facebook" />
+        </a>
+        <a style="text-decoration: none; padding: 0 4px" href="https://www.youtube.com/@@V1Hub">
+          <img style="width: 48px; height: 48px; border-radius: 50%"
+            src="https://v1hubstorage.blob.core.windows.net/template-email/email_yt.jpg" alt="youtube" />
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

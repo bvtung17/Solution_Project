@@ -1,7 +1,11 @@
-﻿class Program
+﻿using System.Text;
+
+class Program
 {
     static void Main()
     {
+        Console.OutputEncoding = Encoding.UTF8;
+
         // Tạo một đơn hàng mới
         var order = new Order { OrderId = 1, Status = "Mới" };
 
