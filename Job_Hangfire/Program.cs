@@ -1,6 +1,5 @@
 using Hangfire;
 using Hangfire.MemoryStorage;
-using Job_Hangfire;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +20,8 @@ builder.Services.AddHangfireServer(options =>
     options.SchedulePollingInterval = TimeSpan.FromSeconds(5);
 });
 
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,24 +33,25 @@ app.UseHangfireDashboard();
 app.MapHangfireDashboard();
 
 
-try
-{
-    RecurringJob.AddOrUpdate<HangfireJob2>(job =>
-                                             job.ExecuteAsync(),
-                                             cronExpression: "*/10 * * * * *",
-                                             TimeZoneInfo.Utc);
+//try
+//{
+//    RecurringJob.AddOrUpdate<HangfireJob2>(job =>
+//                                             job.ExecuteAsync(),
+//                                             cronExpression: "*/10 * * * * *",
+//                                             TimeZoneInfo.Utc);
 
-    RecurringJob.AddOrUpdate<HangfireJob>(job =>
-                                                 job.ExecuteAsync(),
-                                                 cronExpression: "* * * * * *",
-                                                 TimeZoneInfo.Utc);
-}
-catch (Exception e)
-{
-    Console.WriteLine(e.Message);
-}
+//    RecurringJob.AddOrUpdate<HangfireJob>(job =>
+//                                                 job.ExecuteAsync(),
+//                                                 cronExpression: "* * * * * *",
+//                                                 TimeZoneInfo.Utc);
+//}
+//catch (Exception e)
+//{
+//    Console.WriteLine(e.Message);
+//}
 
 app.UseHttpsRedirection();
 
+app.MapControllers();
 
 app.Run();
