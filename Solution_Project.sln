@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Job_Hangfire", "Job_Hangfir
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASCIIArt", "ASCIIArt\ASCIIArt.csproj", "{8D1F3405-01D9-46E8-B80B-312D9AC05200}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlToPDF", "HtmlToPDF\HtmlToPDF.csproj", "{A325A821-D659-4378-931F-A812B4EA0FA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HtmlToPDF", "HtmlToPDF\HtmlToPDF.csproj", "{A325A821-D659-4378-931F-A812B4EA0FA8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GaTwoFactorAuthenticator", "GaTwoFactorAuthenticator\GaTwoFactorAuthenticator.csproj", "{9B5963DE-061C-498A-B80A-5AFD36084EAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebhookApi", "WebhookApi\WebhookApi.csproj", "{65CBAC8E-FB2E-441F-977A-5B4D72B155E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{A325A821-D659-4378-931F-A812B4EA0FA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A325A821-D659-4378-931F-A812B4EA0FA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A325A821-D659-4378-931F-A812B4EA0FA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B5963DE-061C-498A-B80A-5AFD36084EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B5963DE-061C-498A-B80A-5AFD36084EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B5963DE-061C-498A-B80A-5AFD36084EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B5963DE-061C-498A-B80A-5AFD36084EAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65CBAC8E-FB2E-441F-977A-5B4D72B155E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65CBAC8E-FB2E-441F-977A-5B4D72B155E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65CBAC8E-FB2E-441F-977A-5B4D72B155E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65CBAC8E-FB2E-441F-977A-5B4D72B155E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
