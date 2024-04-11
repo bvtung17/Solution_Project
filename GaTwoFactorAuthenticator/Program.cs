@@ -13,7 +13,7 @@ class Program
 
         // Tạo secret key (đây là thông tin mật của bạn, nên được lưu trữ an toàn)
         var gaSecret = CommonHelper.RandomString(12);
-        string secretKey = gaSecret.Encrypt("MY7JshJLGHVowuut9ZsU5emEW1KlqXquOfXOFbYoByBsVD55EDht1uF3ufNgq2Tb");
+        string secretKey = gaSecret.Encrypt("tesst");
 
         // Thông tin ứng dụng và người dùng
         string appName = "MyApp";
