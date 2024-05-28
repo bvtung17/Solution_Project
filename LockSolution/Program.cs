@@ -49,37 +49,40 @@ app.Run();
 
 internal static class LockExtension
 {
-    private static readonly Dictionary<string, ConcurrentDictionary<string, long>> ProtectActionData = new();
+    private static readonly ConcurrentDictionary<string, ConcurrentDictionary<string, long>> ProtectActionData = new ConcurrentDictionary<string, ConcurrentDictionary<string, long>>();
+    private static readonly ConcurrentDictionary<string, object> ActionLocks = new ConcurrentDictionary<string, object>();
+
+    /// <summary>
+    /// ProtectAction only use for single host application
+    /// </summary>
     public static void ProtectAction(string action, string entity, int circleInSeconds = 60)
     {
-        var now = DateTime.UtcNow.Millisecond;
-        lock (ProtectActionData)
+        var now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+        var circleInMillis = circleInSeconds * 1000;
+
+        // Get or add a lock object for the action
+        var actionLock = ActionLocks.GetOrAdd(action, _ => new object());
+
+        lock (actionLock)
         {
-            if (ProtectActionData.TryGetValue(action, out var requests))
+            var entityRequests = ProtectActionData.GetOrAdd(action, _ => new ConcurrentDictionary<string, long>());
+
+            if (entityRequests.TryGetValue(entity, out var lastRequestTime))
             {
-                if (requests.TryGetValue(entity, out var last))
-                {
-                    if (last > now - TimeSpan.FromSeconds(circleInSeconds).TotalMilliseconds)
-                    {
-                        var remainSeconds = circleInSeconds - (now - last) / 1000;
-                        throw new Exception($"Sorry, too many attempts. Please try again in {remainSeconds} seconds.");
-                    }
+                var timeSinceLastRequest = now - lastRequestTime;
 
-                    requests.TryRemove(entity, out long time);
-
-                    if (requests.IsEmpty)
-                        ProtectActionData.Remove(action);
-                }
-                else
+                if (timeSinceLastRequest < circleInMillis)
                 {
-                    requests.TryAdd(entity, now);
+                    var remainSeconds = (circleInMillis - timeSinceLastRequest) / 1000;
+                    throw new BadRequestException($"Sorry, too many attempts. Please try again in {remainSeconds} seconds.");
                 }
+
+                // Update the request time
+                entityRequests[entity] = now;
             }
             else
             {
-                var newRequests = new ConcurrentDictionary<string, long>();
-                newRequests.TryAdd(entity, now);
-                ProtectActionData.TryAdd(action, newRequests);
+                entityRequests.TryAdd(entity, now);
             }
         }
     }
